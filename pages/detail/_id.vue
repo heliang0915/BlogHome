@@ -65,10 +65,7 @@
       blogRight
     },
     async asyncData({params}) {
-      // console.log("asyncData....default");
-      // let { data } = await axios.post(`http://localhost:8080/channel/list`,{sort:{order:1},pageSize:100,page: {cur: 1, params: {rank:2}}})
       let data = await api.indexQuery.getChannelData()
-      console.log(data);
       return {channels: data.models}
     }
   }
