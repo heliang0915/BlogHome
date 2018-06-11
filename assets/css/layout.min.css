@@ -167,7 +167,7 @@
 }
 
 .page-enter-active, .page-leave-active {
-  transition: opacity .1s;
+  transition: opacity .5s;
 }
 
 .page-enter, .page-leave-active {
