@@ -1,8 +1,9 @@
 import  axios from 'axios';
+import config from '../config';
 import  api from './api';
 
 var instance = axios.create({
-  baseURL: 'http://localhost:3000/api'
+  baseURL: config.api.baseURL
 });
 
 //添加一个响应拦截器
