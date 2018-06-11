@@ -21,12 +21,8 @@ module.exports = {
   //配置动态效果
   transition: {
     name: 'page',
-    mode: 'out-in',
-    beforeEnter (el) {
-      console.log('Before enter...');
-    }
+    mode: 'out-in'
   },
-
   //静态化
   generate: {
     minify: {
