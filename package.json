@@ -4,9 +4,15 @@
   "description": "bloghome",
   "author": "heiang <598481337@qq.com>",
   "private": true,
+  "config": {
+    "nuxt": {
+      "host": "0.0.0.0",
+      "port": "5000"
+    }
+  },
   "scripts": {
     "generate": "nuxt generate",
-    "dev": "HOST=0.0.0.0 PORT=5000 nuxt",
+    "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
