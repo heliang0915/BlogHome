@@ -6,8 +6,10 @@
       <div class="main-inner">
         <div class="blog-lf">
           <ul class="blog-list">
-            <li class="blog-item" :key="index" v-for="(blog,index) in blogList">
-              <h3><a href="###">{{blog.title}}{{page}}</a></h3>
+            <li class="blog-item" @click="gotoDetail" :key="index" v-for="(blog,index) in blogList">
+              <h3>
+                <a href="###">{{blog.title}}{{page}}</a>
+              </h3>
               <div class="blog-info">
                 <span><a class="blog-time" href="#">五月 25, 2018</a></span>
                 <span><a class="blog-type" href="#">支付接口</a></span>
@@ -55,9 +57,13 @@
       blogRight,
       pagination
     },
+    methods:{
+      gotoDetail(){
+        this.$router.push('/detail/1');
+      }
+    },
     async asyncData({params}) {
       let {models,topChannels}=await api.indexQuery.getBlogList();
-
       return {channels:topChannels,blogList:models}
     }
   }
