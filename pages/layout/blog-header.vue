@@ -22,6 +22,7 @@
       </div>
 </template>
 <script>
+    import "../../assets/js/plugins/editor-wang/css/wangEditor.min.css"
     export default {
       props:['channels']
     }

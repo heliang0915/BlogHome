@@ -71,10 +71,14 @@ module.exports = {
     [
       '/api',
       {
-        target: 'http://localhost:8080', // api主机
+        target: 'https://www.blogapi.top', // api主机
         pathRewrite: { '^/api' : '/' }
       }
     ]
+  ],
+  plugins: [
+    {src: '~plugins/jquery.min.js', ssr: false},
+    {src: '~plugins/editor-wang/js/wangEditor.min.js', ssr: false}
   ],
   /*
   ** Build configuration

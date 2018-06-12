@@ -58,6 +58,7 @@
   import blogRight from '../layout/blog-rg';
   import api from '../../api/api';
 
+
   export default {
     components: {
       blogHeader,
@@ -67,6 +68,50 @@
     async asyncData({params}) {
       let data = await api.indexQuery.getChannelData()
       return {channels: data.models}
+    },
+    mounted(){
+      this.initEditor();
+    },
+    methods:{
+      initEditor(){
+          var self=this;
+          var total=50;
+          var smiles=[];
+          for(var i=0;i<total;i++){
+            var json= {
+              icon:'http://www.jq22.com/demo/qqFace/arclist/'+(i+1)+'.gif',
+              value:'[em_'+(i+1)+']'
+            }
+            smiles.push(json);
+          }
+          var editor = new wangEditor('content');
+          editor.config.menus = [
+            'bold',
+            'italic',
+            'strikethrough',
+            'eraser',
+            'forecolor',
+            '|',
+            'fontfamily',
+            'fontsize',
+            'head',
+            'unorderlist',
+            'orderlist',
+            'alignleft',
+            'aligncenter',
+            'alignright',
+            'emotion',
+            'undo',
+            'redo'
+          ];
+          editor.config.emotions = {
+            'default': {
+              title: '表情',  // 组名称
+              data: smiles
+            }
+          }
+          editor.create();
+        }
     }
   }
 </script>
