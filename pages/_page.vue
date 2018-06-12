@@ -2,12 +2,13 @@
   <div class="wrap">
     <!-- 头部 -->
     <blog-header :channels="channels"></blog-header>
+
     <div class="main">
       <div class="main-inner">
         <div class="blog-lf">
           <ul class="blog-list">
             <li class="blog-item" :key="index" v-for="(blog,index) in blogList">
-              <h3><a href="###">{{blog.title}}{{page}}</a></h3>
+              <h3><a href="###">{{blog.title}}</a></h3>
               <div class="blog-info">
                 <span><a class="blog-time" href="#">五月 25, 2018</a></span>
                 <span><a class="blog-type" href="#">支付接口</a></span>
@@ -19,11 +20,12 @@
             </li>
           </ul>
           <!--分页-->
-          <pagination></pagination>
+          <pagination :totalPage="totalPage" :pageNo="page"></pagination>
         </div>
          <blogRight></blogRight>
       </div>
     </div>
+
     <blogFooter></blogFooter>
   </div>
 </template>
@@ -40,13 +42,19 @@
       return {
         channels: [],
         blogList:[],
-        page:this.$route.params.page
+        totalPage:10,
+        page:this.$route.params.page==null?1:this.$route.params.page
       }
     },
     filters:{
       ellipsis(val){
         let len=130;
-        return (val.length>len)?(val.substr(0,len)+"..."):val;
+        // console.log(val);
+        let temp=val;
+        if(temp){
+          temp=val&&(val.length>len)?(val.substr(0,len)+"..."):val;
+        }
+        return temp;
       }
     },
     components: {
@@ -56,9 +64,12 @@
       pagination
     },
     async asyncData({params}) {
-      let {models,topChannels}=await api.indexQuery.getBlogList();
+      let data=await api.indexQuery.getBlogList();
+      let pageNo=params.page==null?1:params.page
+      let {models,topChannels,total,pageSize}=await api.indexQuery.getBlogList(pageNo);
+      // console.log("totalPage>>>>>>>>>"+Math.ceil(total/pageSize));
+      return {channels:topChannels,blogList:models,totalPage:Math.ceil(total/pageSize)}
 
-      return {channels:topChannels,blogList:models}
     }
   }
 </script>

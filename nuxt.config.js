@@ -71,7 +71,7 @@ module.exports = {
     [
       '/api',
       {
-        target: 'http://localhost:8080', // api主机
+        target: 'https://blogapi.top', // api主机
         pathRewrite: { '^/api' : '/' }
       }
     ]

@@ -20,9 +20,9 @@ let indexQuery={
           })
         })
      },
-    getBlogList(){
+    getBlogList(pageNo){
       return new Promise((resolve, reject)=>{
-        fetch.post(`/article/list`,{page: 1, params: {title: "", tag: ""}}).then((data)=>{
+        fetch.post(`/article/list`,{page: pageNo, params: {title: "", tag: ""}}).then((data)=>{
           resolve(data.data);
         }).catch((err)=>{
           console.log(err);
