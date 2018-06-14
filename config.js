@@ -1,7 +1,7 @@
 
 let config={
     api:{
-      baseURL: 'http://localhost:8080'
+      baseURL: 'https://blogapi.top'
     }
 }
 
