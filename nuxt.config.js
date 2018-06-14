@@ -29,54 +29,62 @@ module.exports = {
     name: 'page',
     mode: 'out-in'
   },
-  //静态化
-  generate: {
-    minify: {
-      collapseBooleanAttributes: true,
-      collapseWhitespace: false,
-      decodeEntities: true,
-      minifyCSS: true,
-      minifyJS: true,
-      processConditionalComments: true,
-      removeAttributeQuotes: false,
-      removeComments: false,
-      removeEmptyAttributes: true,
-      removeOptionalTags: true,
-      removeRedundantAttributes: true,
-      removeScriptTypeAttributes: false,
-      removeStyleLinkTypeAttributes: false,
-      removeTagWhitespace: false,
-      sortAttributes: true,
-      sortClassName: false,
-      trimCustomFragments: true,
-      useShortDoctype: true
-    }
-    ,
-    routes: function () {
-      //生成入口
-      // return blogQuery.getBlogTotal().then((res) => {
-      //
-      //   return [res.data].map((page)=>{
-      //       return ''
-      //   })
-      //   // return res.data.map((user) => {
-      //   //
-      //   //   return '/user/' + user.id
-      //   // })
-      // })
-      return axios.get(`${config.api.baseURL}/web/getBlogTotal`)
-        .then((res) => {
-          let total=res.data;
-          let ary=[];
-          for(var i=0;i<total;i++){
-            ary.push(i);
-          }
-          return ary.map((page)=>{
-               return `/${page}`
-            })
-        })
+  render: {
+    bundleRenderer: {
+      cache: require('lru-cache')({
+        max: 1000,
+        maxAge: 1000 * 60 * 15
+      })
     }
   },
+  //静态化
+  // generate: {
+  //   minify: {
+  //     collapseBooleanAttributes: true,
+  //     collapseWhitespace: false,
+  //     decodeEntities: true,
+  //     minifyCSS: true,
+  //     minifyJS: true,
+  //     processConditionalComments: true,
+  //     removeAttributeQuotes: false,
+  //     removeComments: false,
+  //     removeEmptyAttributes: true,
+  //     removeOptionalTags: true,
+  //     removeRedundantAttributes: true,
+  //     removeScriptTypeAttributes: false,
+  //     removeStyleLinkTypeAttributes: false,
+  //     removeTagWhitespace: false,
+  //     sortAttributes: true,
+  //     sortClassName: false,
+  //     trimCustomFragments: true,
+  //     useShortDoctype: true
+  //   }
+  //   ,
+  //   routes: function () {
+  //     //生成入口
+  //     // return blogQuery.getBlogTotal().then((res) => {
+  //     //
+  //     //   return [res.data].map((page)=>{
+  //     //       return ''
+  //     //   })
+  //     //   // return res.data.map((user) => {
+  //     //   //
+  //     //   //   return '/user/' + user.id
+  //     //   // })
+  //     // })
+  //     return axios.get(`${config.api.baseURL}/web/getBlogTotal`)
+  //       .then((res) => {
+  //         let total=res.data;
+  //         let ary=[];
+  //         for(var i=0;i<total;i++){
+  //           ary.push(i);
+  //         }
+  //         return ary.map((page)=>{
+  //              return `/${page}`
+  //           })
+  //       })
+  //   }
+  // },
   css: [
     '~assets/css/reset.min.css',
     '~assets/css/layout.min.css',
