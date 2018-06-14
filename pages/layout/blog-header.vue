@@ -2,7 +2,7 @@
       <div class="header">
         <div class="header-inner">
           <h1>
-            <a href="#">科技日记</a>
+            <a href="#">前端日记</a>
           </h1>
           <ul class="nav">
             <li  @mouseover="getSecondChannel()">
