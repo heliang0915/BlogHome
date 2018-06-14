@@ -1,6 +1,5 @@
-
-import  indexQuery from './indexQuery';
+import  blogQuery from './blogQuery';
 let api={
-  indexQuery
+  blogQuery
 }
 export default api;

@@ -1,31 +1,38 @@
 <template>
   <div class="wrap">
     <!-- 头部 -->
-    <blog-header :channels="channels"></blog-header>
-
+    <blog-header :channels="channels" :channelName="channelName"></blog-header>
     <div class="main">
       <div class="main-inner">
         <div class="blog-lf">
-          <ul class="blog-list">
-            <li class="blog-item" :key="index" v-for="(blog,index) in blogList">
-              <h3><a href="###">{{blog.title}}</a></h3>
+          <ul class="blog-list" v-if="blogList.length>0">
+
+            <li  class="blog-item" @click="gotoDetail(blog.uuid,(index+1)+((pageNo-1)*pageSize))" :key="index" v-for="(blog,index) in blogList">
+              <h3>
+                <a href="###">{{blog.title}}</a>
+              </h3>
               <div class="blog-info">
-                <span><a class="blog-time" href="#">五月 25, 2018</a></span>
-                <span><a class="blog-type" href="#">支付接口</a></span>
-                <span><a class="blog-comment" href="#">0条评论</a></span>
-                <span><a class="blog-read" href="#">56次阅读</a></span>
-                <span><a class="blog-zan" href="#">2人点赞</a></span>
+
+                <span><a class="blog-time" href="#">{{blog.date&&blog.date.indexOf('')>-1?blog.date.split(' ')[0]:blog.date}}</a></span>
+                <span><a class="blog-type" href="#">{{blog.channelName}}</a></span>
+                <span><a class="blog-comment" href="#">{{blog.pubUser==null?'系统':blog.pubUser}}发布</a></span>
+                <span><a class="blog-read" href="#">{{blog.pv}}次阅读</a></span>
+                <!--<span><a class="blog-zan" href="#">{{blog.zanSize}}人点赞</a></span>-->
               </div>
               <p>{{blog.contentTxt|ellipsis}}</p>
             </li>
           </ul>
+          <ul class="blog-list" v-else>
+            <li  class="blog-item blog-no-data" >
+              很抱歉，没有找到任何内容。
+            </li>
+          </ul>
           <!--分页-->
-          <pagination :totalPage="totalPage" :pageNo="page"></pagination>
+          <pagination :totalPage="totalPage" :pageNo="pageNo"></pagination>
         </div>
-         <blogRight></blogRight>
+         <blogRight :recentList="recentList" :hotList="hotList" :recommendList="recommendList"></blogRight>
       </div>
     </div>
-
     <blogFooter></blogFooter>
   </div>
 </template>
@@ -35,7 +42,7 @@
   import pagination from '../components/pagination';
   import blogRight from './layout/blog-rg';
   import api from '../api/api';
-  // import axios from 'axios';
+  import util from '../util/util';
 
   export default {
     data() {
@@ -43,13 +50,17 @@
         channels: [],
         blogList:[],
         totalPage:10,
-        page:this.$route.params.page==null?1:this.$route.params.page
+        pageSize:0,
+        pageNo:0,
+        channelId:0,
+        channelName:'',
+        index:0,
+        total:0,
       }
     },
     filters:{
       ellipsis(val){
         let len=130;
-        // console.log(val);
         let temp=val;
         if(temp){
           temp=val&&(val.length>len)?(val.substr(0,len)+"..."):val;
@@ -63,13 +74,30 @@
       blogRight,
       pagination
     },
+    methods:{
+      gotoDetail(uuid,pageNo){
+        this.$router.push(`/detail/${uuid}`);
+      }
+    },
     async asyncData({params}) {
-      let data=await api.indexQuery.getBlogList();
-      let pageNo=params.page==null?1:params.page
-      let {models,topChannels,total,pageSize}=await api.indexQuery.getBlogList(pageNo);
-      // console.log("totalPage>>>>>>>>>"+Math.ceil(total/pageSize));
-      return {channels:topChannels,blogList:models,totalPage:Math.ceil(total/pageSize)}
-
+      let channelId=0;
+      let pageNo=0;
+      let queryStr=params.page;
+      if(queryStr&&queryStr.indexOf('-')){
+        channelId=queryStr.split('-')[1];
+        pageNo=queryStr==null?1:queryStr.split('-')[0];
+      }else{
+        pageNo=params.page==null?1:params.page;
+      }
+      //左侧列表
+      let data=await api.blogQuery.getBlogList(pageNo,7,channelId);
+      let {models,topChannels,total,pageSize,recentList,recommendList,hotList,allChannels}=data;
+      // console.log("channelId############"+channelId);
+      let channelName=util.getChannelName(channelId,allChannels);
+      if(channelId=="about"){
+        channelName="关于我";
+      }
+      return {channels:topChannels,recentList,hotList,recommendList,total,pageSize,pageNo,channelId,channelName,blogList:models,totalPage:Math.ceil(total/pageSize)}
     }
   }
 </script>

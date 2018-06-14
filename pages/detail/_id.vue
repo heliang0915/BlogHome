@@ -1,72 +1,138 @@
 <template>
   <div class="wrap">
     <!-- 头部 -->
-    <blog-header :channels="channels"></blog-header>
+    <blog-header :channels="channels" :channelName="channelName"></blog-header>
     <div class="main">
       <div class="main-inner">
         <div class="blog-lf">
           <div class="detail-wrap">
             <div class="blog-area">
-              <h3>Shiro实现App接口登陆</h3>
+              <h3> {{blog.title}}</h3>
               <div class="blog-info">
-                <span><label class="blog-time" href="#">五月 25, 2018</label></span>
-                <span><label class="blog-comment" href="#">0条评论</label></span>
-                <span><label class="blog-read" href="#">56次阅读</label></span>
-                <span><label class="blog-zan" href="#">2人点赞</label></span>
+                <span><label class="blog-time" href="#">{{blog.date&&blog.date.indexOf('')>-1?blog.date.split(' ')[0]:blog.date}}</label></span>
+                <span><label class="blog-type" href="#">{{blog.channelName}}</label></span>
+                <span><label class="blog-comment" href="#">{{blog.pubUser==null?'系统':blog.pubUser}}发布</label></span>
+                <span><label class="blog-read" href="#">{{blog.pv}}次阅读</label></span>
               </div>
               <div class="blog-content">
-                <p>
-                  实现APP登录之前需要先对Web中Shiro会话做一个了解，在Web中保持Session是通过在Cookie中存放了sessionID来实现会话保持的。Shiro也是提供了SessionDAO专门用于完成会话的持久化用于会话的创建、读取、销毁、更新等操作，普通情况是通过MemorySessionDAO来完成Session的管理。</p>
-                <p> Cookie：Web应用中Cookie由浏览器来维护，每次请求都会在请求头（header）中将其传到后台；</p>
-                <p>
-                  Session：由于http是无状态的，但是有时候服务器需要把这次请求的数据保存下来留给下一次请求使用，即需要维护连续请求的状态，这个时候服务器就借助cookie，当浏览器发送请求来服务器的时候，服务器会生成一个唯一的值，写到cookie中返回给浏览器，同时生成一个session对象，这样session和cookie值就有了一一对应关系了，浏览下一次访问的时候就会带着这个cookie值，这个时候服务器就会获得cookie的值，然后在自己的缓存里面查找是否存在和该cookie关联的session;</p>
+                <p v-html="blog.content"></p>
               </div>
               <!--打赏 点赞-->
-              <div class="blog-ds">
-                <button class="btn-bg blue-outer blog-zan">打赏</button>
-                <button class="btn-bg org-outer blog-zan">点赞</button>
-                <button class="btn-bg green-outer blog-zan">分享</button>
-              </div>
+              <!--<div class="blog-ds">-->
+                <!--<button class="btn-bg blue-outer blog-zan">打赏</button>-->
+                <!--<button class="btn-bg org-outer blog-zan">点赞</button>-->
+                <!--<button class="btn-bg green-outer blog-zan">分享</button>-->
+              <!--</div>-->
             </div>
 
             <div class="blog-page">
-              <span class="pre-btn">&lt;上一篇</span>
-              <span class="next-btn">下一篇 &gt;</span>
+              <!--<span  style="visibility: visible" class="pre-btn" @click="pre">&lt;上一篇</span>-->
+              <span  style="visibility: visible" class="pre-btn" @click="back">&lt;返回</span>
+              <!--<span  class="next-btn" @click="next">下一篇 &gt;</span>-->
             </div>
 
-            <div class="comment-area">
-              <h4>发表评论</h4>
-              <div class="comment-content">
-                <textarea id="content" rows="14" style="width: 100%;"></textarea>
-              </div>
-              <div class="blog-ds">
-                <button class="btn-bg blue-outer blog-publish">发表</button>
-              </div>
-            </div>
+            <!--<div class="comment-area">-->
+              <!--<h4>发表评论</h4>-->
+              <!--<div class="comment-content" style="height: 250px;">-->
+                <!--<quill-editor style="height:220px;" ref="content" @change="onEditorChange" :options="editorOption" ></quill-editor>-->
+              <!--</div>-->
+              <!--<div class="blog-ds">-->
+                <!--<button @click="publish" class="btn-bg blue-outer blog-publish">发表</button>-->
+              <!--</div>-->
+            <!--</div>-->
           </div>
         </div>
-        <blogRight></blogRight>
+        <blogRight :recentList="recentList" :hotList="hotList" :recommendList="recommendList"></blogRight>
       </div>
     </div>
     <blogFooter></blogFooter>
   </div>
 </template>
 <script>
-
   import blogHeader from '../layout/blog-header';
   import blogFooter from '../layout/blog-footer';
   import blogRight from '../layout/blog-rg';
   import api from '../../api/api';
-
+  import util from '../../util/util';
   export default {
     components: {
       blogHeader,
       blogFooter,
       blogRight
     },
+    data(){
+      return{
+        blog:{},
+        comment:'',
+        pageNo:0,
+        uuid:0,
+        total:0,
+        channelName:'',
+        id:this.$route.params.id,
+        editorOption: {
+          placeholder:'说点什么吧...',
+          modules: {
+            toolbar: [
+              ['bold', 'italic', 'underline', 'strike'],
+              [{ 'header': 1 }, { 'header': 2 }],
+              [{ 'size': ['small', false, 'large', 'huge'] }],
+              [{ 'align': [] }]
+            ]
+          }
+        }
+      }
+    },
+
     async asyncData({params}) {
-      let data = await api.indexQuery.getChannelData()
-      return {channels: data.models}
+      let uuid=params.id;
+      let pageNo=0;
+      let total=0;
+      let tempUUID=0;
+      if(uuid.indexOf('-')){
+        tempUUID=uuid.split('-')[0];
+        pageNo=uuid.split('-')[1];
+        total=uuid.split('-')[2];
+      }
+      let data = await api.blogQuery.getBlog(tempUUID);
+      let {topChannels,module,recentList,recommendList,hotList,allChannels}=data;
+      let channelName=util.getChannelName(module.tag,allChannels);
+      if(tempUUID=="about"){
+        channelName="关于我";
+      }
+      return {uuid:tempUUID,total,pageNo,channels: topChannels,blog:module,recentList,recommendList,hotList,channelName}
+    },
+    methods:{
+      getBlogInfo(callback){
+        api.blogQuery.getBlogList(this.pageNo,1).then((data)=>{
+          let blog=data.models[0];
+          this.blog=blog;
+          this.uuid=blog.uuid;
+          callback();
+        })
+      },
+      back(){
+        this.$router.back();
+      },
+      pre(){
+        this.pageNo=parseInt(this.pageNo)-1>0?parseInt(this.pageNo)-1:1;
+        this.getBlogInfo(()=>{
+          window.location.href=`/detail/${this.uuid}-${this.pageNo}-${this.total}`;
+        });
+      },
+      next(){
+        this.pageNo=parseInt(this.pageNo)+1>this.total?this.total:(parseInt(this.pageNo)+1);
+        this.getBlogInfo(()=>{
+          window.location.href=`/detail/${this.uuid}-${this.pageNo}-${this.total}`;
+        });
+      },
+      onEditorChange(editor) {
+        let {text}=editor;
+        this.comment=text;
+      },
+      //发表
+      publish(){
+        alert(this.comment)
+      }
     }
   }
 </script>

@@ -1,4 +1,5 @@
 var axios=require('axios');
+var config=require('./config');
 module.exports = {
   /*
   ** Headers of the page
@@ -10,6 +11,11 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '首页' }
     ],
+    // script: [
+    //   {  type: 'javascript',src:"../js/jquery.min.js" }
+    //   ,
+    //   {  type: 'javascript',src:"../js/plugins/editor-wang/js/wangEditor.min.js" }
+    // ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
@@ -45,15 +51,31 @@ module.exports = {
       trimCustomFragments: true,
       useShortDoctype: true
     }
-    // ,
-    // routes: function () {
-    //   return axios.get('https://jsonplaceholder.typicode.com/users')
-    //     .then((res) => {
-    //       return res.data.map((user) => {
-    //         return '/user/' + user.id
-    //       })
-    //     })
-    // }
+    ,
+    routes: function () {
+      //生成入口
+      // return blogQuery.getBlogTotal().then((res) => {
+      //
+      //   return [res.data].map((page)=>{
+      //       return ''
+      //   })
+      //   // return res.data.map((user) => {
+      //   //
+      //   //   return '/user/' + user.id
+      //   // })
+      // })
+      return axios.get(`${config.api.baseURL}/web/getBlogTotal`)
+        .then((res) => {
+          let total=res.data;
+          let ary=[];
+          for(var i=0;i<total;i++){
+            ary.push(i);
+          }
+          return ary.map((page)=>{
+               return `/${page}`
+            })
+        })
+    }
   },
   css: [
     '~assets/css/reset.min.css',
@@ -63,18 +85,22 @@ module.exports = {
     '~assets/css/detail.min.css'
   ],
   //配置反向代理解决跨域问题
-  modules: [
-    '@nuxtjs/axios',
-    '@nuxtjs/proxy'
-  ],
-  proxy: [
-    [
-      '/api',
-      {
-        target: 'https://blogapi.top', // api主机
-        pathRewrite: { '^/api' : '/' }
-      }
-    ]
+  // modules: [
+  //   '@nuxtjs/axios',
+  //   '@nuxtjs/proxy'
+  // ],
+  // proxy: [
+  //   [
+  //     '/api',
+  //     {
+  //       // target: 'https://blogapi.top', // api主机
+  //       target: 'http://localhost:8080', // api主机
+  //       pathRewrite: { '^/api' : '/' }
+  //     }
+  //   ]
+  // ],
+  plugins: [
+    { src: '~/plugins/vue-editor.js', ssr: false }
   ],
   /*
   ** Build configuration

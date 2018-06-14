@@ -1,16 +1,20 @@
 <template>
-  <ul class="pagination">
-    <li :class="['first',pageNo==1?'activity':'']"><a @click="first" >«</a></li>
-    <li class="pre"><a @click="pre" >&lt;</a></li>
+  <ul class="pagination" v-show="totalPage>1">
+    <li v-show="pageNo!=1" :class="['first',pageNo==1?'activity':'']"><a @click="first" >«</a></li>
+    <li v-show="pageNo!=1"  class="pre"><a @click="pre" >
+      <span>&lt;</span>
+    </a></li>
     <li v-for="item in totalPage" :key="item" :class="['pageNo',pageNo==item+start?'active':'']">
         <a @click="go(item+start)">{{item+start}}</a>
     </li>
-    <li class="next"><a @click="next" >&gt;</a></li>
-    <li class="end"><a @click="last">»</a></li>
-
+    <li v-show="pageNo!=totalPage" class="next">
+      <a @click="next" >
+        <span>&gt;</span>
+      </a>
+    </li>
+    <li v-show="pageNo!=totalPage" class="end"><a @click="last">»</a></li>
   </ul>
 </template>
-
 <script>
     export default {
       props:['totalPage','pageNo'],
