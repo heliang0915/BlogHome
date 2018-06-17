@@ -1,8 +1,8 @@
 
 let config={
     api:{
-      baseURL: 'http://localhost:5000/api'
+      baseURL: 'https://blogapi.top'
     }
 }
 
-export default config;
+module.exports= config;

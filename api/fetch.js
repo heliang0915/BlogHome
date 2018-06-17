@@ -1,27 +1,9 @@
-import  axios from 'axios';
-import config from '../config';
-import  api from './api';
-
+let  axios= require('axios');
+let  config= require('../config');
 var instance = axios.create({
   baseURL: config.api.baseURL
 });
 
-//添加一个响应拦截器
-instance.interceptors.response.use(async function(res){
-  //在这里对返回的数据进行处理
-  let {config}=res;
-  let {url}=config;
-  //自动注入顶级栏目信息
-  if(url.indexOf('channel')==-1&&res.data.topChannels==null){
-    let data=await api.indexQuery.getChannelData();
-    res.data.topChannels=data.models;
-    return res;
-  }else{
-    return res;
-  }
-},function(err){
-  return Promise.reject(err);
-})
 let fetch={
     get(url){
       return instance.get(url);
@@ -30,4 +12,5 @@ let fetch={
       return instance.post(url,body);
     }
 }
-export default fetch;
+
+module.exports=fetch;

@@ -8,10 +8,10 @@
 <script>
     export default {
        mounted(){
-        var tip= document.querySelector('#tip')
-         setTimeout(function(){
-           tip.className="tip-center move-top"
-         },100)
+        // var tip= document.querySelector('#tip')
+        //  setTimeout(function(){
+        //    tip.className="tip-center move-top"
+        //  },100)
        }
     }
 </script>
