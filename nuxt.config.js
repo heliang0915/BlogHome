@@ -114,6 +114,12 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    loaders:[
+      {
+        test: /\.css$/,
+        loader: 'vue-style-loader!css-loader'
+      }
+    ],
     /*
     ** Run ESLint on save
     */
