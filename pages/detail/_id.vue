@@ -7,7 +7,7 @@
         <div class="blog-lf">
           <div class="detail-wrap">
             <div class="blog-area">
-              <h3> {{blog.title}}</h3>
+              <h1> {{blog.title}}</h1>
               <div class="blog-info">
                 <span><label class="blog-time" href="#">{{blog.date&&blog.date.indexOf('')>-1?blog.date.split(' ')[0]:blog.date}}</label></span>
                 <span><label class="blog-type" href="#">{{blog.channelName}}</label></span>
