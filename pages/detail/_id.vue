@@ -60,6 +60,7 @@
       blogFooter,
       blogRight
     },
+
     data(){
       return{
         blog:{},
@@ -82,7 +83,11 @@
         }
       }
     },
-
+    //SEO-header
+    head() {
+      let {title}=this.blog;
+      return this.$seo(`${title}`, `详情页面${title}`)
+    },
     async asyncData({params}) {
       let uuid=params.id;
       let pageNo=0;

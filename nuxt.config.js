@@ -11,11 +11,6 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '首页' }
     ],
-    // script: [
-    //   {  type: 'javascript',src:"../js/jquery.min.js" }
-    //   ,
-    //   {  type: 'javascript',src:"../js/plugins/editor-wang/js/wangEditor.min.js" }
-    // ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
@@ -108,7 +103,8 @@ module.exports = {
   //   ]
   // ],
   plugins: [
-    { src: '~/plugins/vue-editor.js', ssr: false }
+    { src: '~/plugins/vue-editor.js', ssr: false },
+    { src: '~/plugins/seo.js'}
   ],
   /*
   ** Build configuration
