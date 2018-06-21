@@ -61,7 +61,6 @@
             }
             while(elem != document.body){
               elem = elem.offsetParent ;
-              console.log(elem);
               obj.left += elem.offsetLeft ;
               obj.top += elem.offsetTop ;
             }
