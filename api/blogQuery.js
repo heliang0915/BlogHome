@@ -32,14 +32,17 @@ let blogQuery={
     //获取博客列表
     getBlogList(pageNo,pageSize,channelId,search_field){
       channelId= channelId==0?"":channelId
+      var startTime=Date.now();
       return new Promise((resolve, reject)=>{
+        console.log("getBlogList开始调用....");
         pageSize=pageSize==null?7:pageSize;
         let options={title: "",search_field, tag: channelId};
         if(search_field){
           options['search_field']=search_field;
         }
-
         fetch.post(`/web/blogList`,{page: pageNo,pageSize, params: options}).then((data)=>{
+          var endTime=Date.now();
+          console.log('getBlogList方法总耗时：：：：'+(endTime-startTime)+'ms')
           resolve(data.data);
         }).catch((err)=>{
           console.log(err);
