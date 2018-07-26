@@ -80,6 +80,8 @@
       }
     },
     async asyncData({params}) {
+      console.log("同构方法开始调用....");
+      let startTime=Date.now();
       let channelId=0;
       let pageNo=0;
       let queryStr=params.page;
@@ -96,6 +98,8 @@
       if(channelId=="about"){
         channelName="关于我";
       }
+      let endTime=Date.now();
+      console.log('同构方法调用完毕,方法耗时...'+(endTime-startTime)+"ms");
       return {channels:topChannels,recentList,hotList,recommendList,total,pageSize,pageNo,channelId,channelName,blogList:models,totalPage:Math.ceil(total/pageSize)}
     }
   }

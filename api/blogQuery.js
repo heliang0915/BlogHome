@@ -19,7 +19,7 @@ let blogQuery={
           })
         })
      },
-    //
+    //获取子栏目
     getChannelChildren(uuid){
       return new Promise((resolve, reject)=> {
         fetch.get(`/web/channelChild/${uuid}`).then((data) => {
