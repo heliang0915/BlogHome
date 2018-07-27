@@ -8,8 +8,9 @@ router.get('/',(req,res,next) => {
 
 //获取blog列表
 router.post('/getBlogList',(req,res)=>{
-     let {pageNo,pageSize,channelId,search_field}=req;
-     blogQuery.getBlogList(pageNo,pageSize,channelId,search_field).then((data)=>{
+     let {page,params,pageSize}=req.body;
+
+     blogQuery.getBlogList(page,pageSize,channelId,search_field).then((data)=>{
         res.send(data);
      }).catch((e)=>{
         console.log("出现错误...."+e.message);

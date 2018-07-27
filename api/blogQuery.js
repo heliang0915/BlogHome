@@ -41,6 +41,8 @@ let blogQuery={
         if(search_field){
           options['search_field']=search_field;
         }
+
+        console.log("params:::"+JSON.stringify({page: pageNo,pageSize, params: options}))
         //调用本地API
         fetch.post(`/api/getBlogList`,{page: pageNo,pageSize, params: options}).then((data)=>{
           var endTime=Date.now();

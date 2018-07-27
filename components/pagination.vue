@@ -13,7 +13,10 @@
       </a>
     </li>
     <li v-show="pageNo!=totalPage" class="end"><a @click="last">»</a></li>
+
+    ==={{pageNo}}
   </ul>
+
 </template>
 <script>
     export default {
@@ -45,7 +48,7 @@
         next(){
           this.pageNo=parseInt(this.pageNo)+1>this.totalPage?this.totalPage:(parseInt(this.pageNo)+1);
           this.counter=(this.counter+1)>this.totalPage?this.totalPage:(this.counter+1);
-          console.log(this.pageNo);
+          console.log("this.pageNo>>>>"+this.pageNo);
           this.$router.push('/'+this.pageNo);
         },
         go(pageNo){

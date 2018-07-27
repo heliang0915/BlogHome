@@ -81,17 +81,19 @@
       }
     },
     async asyncData({params}) {
-      console.log("同构方法开始调用....");
+      let queryStr=params.page;
+      console.log("同构方法开始调用...."+queryStr);
       let startTime=Date.now();
       let channelId=0;
       let pageNo=0;
-      let queryStr=params.page;
-      if(queryStr&&queryStr.indexOf('-')){
+      // let queryStr=params.page;
+      if(queryStr&&queryStr.indexOf('-')>-1){
         channelId=queryStr.split('-')[1];
         pageNo=queryStr==null?1:queryStr.split('-')[0];
       }else{
         pageNo=params.page==null?1:params.page;
       }
+      pageNo=parseInt(pageNo);
       //左侧列表
       let data=await api.blogQuery.getBlogList(pageNo,7,channelId);
       let {models,topChannels,total,pageSize,recentList,recommendList,hotList,allChannels}=data;
