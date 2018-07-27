@@ -120,6 +120,7 @@ module.exports = {
         loader: 'vue-style-loader!css-loader'
       }
     ],
+    
     /*
     ** Run ESLint on save
     */
