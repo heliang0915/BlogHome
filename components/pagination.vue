@@ -13,10 +13,7 @@
       </a>
     </li>
     <li v-show="pageNo!=totalPage" class="end"><a @click="last">»</a></li>
-
-    ==={{pageNo}}
   </ul>
-
 </template>
 <script>
     export default {

@@ -32,7 +32,7 @@ let blogQuery={
     },
     //获取博客列表
     getBlogList(pageNo,pageSize,channelId,search_field){
-      channelId= channelId==0?"":channelId
+      channelId= channelId==null?"":channelId
       var startTime=Date.now();
       return new Promise((resolve, reject)=>{
         console.log("getBlogList开始调用....");

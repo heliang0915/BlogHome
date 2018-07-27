@@ -10,7 +10,7 @@ router.get('/',(req,res,next) => {
 router.post('/getBlogList',(req,res)=>{
      let {page,params,pageSize}=req.body;
 
-     blogQuery.getBlogList(page,pageSize,channelId,search_field).then((data)=>{
+     blogQuery.getBlogList(page,pageSize,params).then((data)=>{
         res.send(data);
      }).catch((e)=>{
         console.log("出现错误...."+e.message);
