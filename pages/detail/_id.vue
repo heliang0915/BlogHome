@@ -15,7 +15,7 @@
                 <span><label class="blog-read" href="#">{{blog.pv}}次阅读</label></span>
               </div>
               <div class="blog-content">
-                <p v-html="blog.content"></p>
+                <div style="line-height: 30px;" v-html="blog.content"></div>
               </div>
               <!--打赏 点赞-->
               <!--<div class="blog-ds">-->

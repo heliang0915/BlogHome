@@ -1,13 +1,14 @@
 /**
- * 页面前端调用
- * [axios description]
+ *  Node 后端调用Fetch
+ * @author heliang0915
  * @type {[type]}
  */
 let  axios= require('axios');
-let config=require('../config')
+let  config= require('../../config');
 var instance = axios.create({
-   baseURL: config.api.baseURL
+  baseURL: config.api.proxyBaseURL
 });
+
 let fetch={
     get(url){
       return instance.get(url);

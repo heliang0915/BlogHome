@@ -5,7 +5,7 @@
     <div class="main">
       <div class="main-inner">
         <div class="blog-lf">
-          <ul class="blog-list" v-if="blogList.length>0">
+          <ul class="blog-list" v-if="blogList&&blogList.length>0">
 
             <li  class="blog-item" @click="gotoDetail(blog.uuid,(index+1)+((pageNo-1)*pageSize))" :key="index" v-for="(blog,index) in blogList">
               <h3>
@@ -30,7 +30,8 @@
           <!--分页-->
           <pagination :totalPage="totalPage" :pageNo="pageNo"></pagination>
         </div>
-         <blogRight :recentList="recentList" :hotList="hotList" :recommendList="recommendList"></blogRight>
+
+         <blogRight v-if="recentList&&hotList&&recommendList " :recentList="recentList" :hotList="hotList" :recommendList="hotList"></blogRight>
       </div>
     </div>
     <blogFooter></blogFooter>
@@ -62,7 +63,7 @@
       ellipsis(val){
         let len=130;
         let temp=val;
-        if(temp){
+        if(temp&&temp.length){
           temp=val&&(val.length>len)?(val.substr(0,len)+"..."):val;
         }
         return temp;
