@@ -2,7 +2,6 @@ import  fetch from './fetch';
 let blogQuery={
      //获取首页栏目名称
      getChannelData(){
-       console.log('获取首页栏目名称 ::::::::::::::::::');
         return new Promise((resolve, reject)=>{
           fetch.post(`/api/getTopChannel`,{
             pageSize:100,
@@ -41,8 +40,6 @@ let blogQuery={
         if(search_field){
           options['search_field']=search_field;
         }
-
-        console.log("params:::"+JSON.stringify({page: pageNo,pageSize, params: options}))
         //调用本地API
         fetch.post(`/api/getBlogList`,{page: pageNo,pageSize, params: options}).then((data)=>{
           var endTime=Date.now();
