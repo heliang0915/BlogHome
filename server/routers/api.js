@@ -12,7 +12,9 @@ router.post('/getBlogList',(req,res)=>{
      blogQuery.getBlogList(pageNo,pageSize,channelId,search_field).then((data)=>{
         res.send(data);
      }).catch((e)=>{
+        console.log("出现错误...."+e.message);
         res.send(e);
+
      })
 })
 

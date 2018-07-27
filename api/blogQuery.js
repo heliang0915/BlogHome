@@ -1,25 +1,25 @@
 import  fetch from './fetch';
 let blogQuery={
-     // //获取首页栏目名称
-     // getChannelData(){
-     //   console.log('获取首页栏目名称 ::::::::::::::::::');
-     //    return new Promise((resolve, reject)=>{
-     //      fetch.post(`/api/getTopChannel`,{
-     //        pageSize:100,
-     //        sort:1,
-     //        page:{
-     //          cur: 1,
-     //          params:{
-     //            rank:2
-     //          }
-     //        }
-     //      }).then((data)=>{
-     //        resolve(data.data);
-     //      }).catch((err)=>{
-     //        reject(err);
-     //      })
-     //    })
-     // },
+     //获取首页栏目名称
+     getChannelData(){
+       console.log('获取首页栏目名称 ::::::::::::::::::');
+        return new Promise((resolve, reject)=>{
+          fetch.post(`/api/getTopChannel`,{
+            pageSize:100,
+            sort:1,
+            page:{
+              cur: 1,
+              params:{
+                rank:2
+              }
+            }
+          }).then((data)=>{
+            resolve(data.data);
+          }).catch((err)=>{
+            reject(err);
+          })
+        })
+     },
     //获取子栏目
     getChannelChildren(uuid){
       return new Promise((resolve, reject)=> {

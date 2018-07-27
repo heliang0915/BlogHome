@@ -46,6 +46,7 @@ let blogQuery={
           console.log('getBlogList方法总耗时：：：：'+(endTime-startTime)+'ms')
           resolve(data.data);
         }).catch((err)=>{
+          console.log("内部出现错误：：："+err.message);
           console.log(err);
           reject(err);
         })
