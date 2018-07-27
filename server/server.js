@@ -4,10 +4,12 @@ const express=require('express');
 const path=require('path');
 const app = require('express')()
 const api = require('./routers/api');
+var morgan = require('morgan')
 //导入nuxt配置文件
 const nuxtConfig=require('../nuxt.config');
 // Body parser，用来封装 req.body
 app.use(bodyParser.json())
+app.use(morgan('dev'));
 app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Credentials",true);
     res.header("Access-Control-Allow-Origin", "*");
@@ -33,5 +35,6 @@ if (!isProd) {
   builder.build()
 }
 app.use(nuxt.render)
+
 app.listen(5000)
 console.log('Server is listening on http://localhost:5000')
