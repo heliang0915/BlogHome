@@ -35,26 +35,31 @@
       methods:{
          first(){
            this.pageNo=1;
-           this.$router.push('/'+this.pageNo);
+           //this.$router.push('/'+this.pageNo);
+           window.location='/'+this.pageNo;
          },
          pre(){
            this.pageNo=parseInt(this.pageNo)-1>0?parseInt(this.pageNo)-1:1;
            this.counter=(this.counter-1)>0?(this.counter-1):0;
-           this.$router.push('/'+this.pageNo);
+           //this.$router.push('/'+this.pageNo);
+           window.location='/'+this.pageNo;
          },
         next(){
           this.pageNo=parseInt(this.pageNo)+1>this.totalPage?this.totalPage:(parseInt(this.pageNo)+1);
           this.counter=(this.counter+1)>this.totalPage?this.totalPage:(this.counter+1);
           console.log("this.pageNo>>>>"+this.pageNo);
-          this.$router.push('/'+this.pageNo);
+        //  this.$router.push('/'+this.pageNo);
+        window.location='/'+this.pageNo;
         },
         go(pageNo){
           this.pageNo=pageNo;
-          this.$router.push('/'+this.pageNo);
+          //this.$router.push('/'+this.pageNo);
+          window.location='/'+this.pageNo;
         },
         last(){
           this.pageNo=this.totalPage;
-          this.$router.push('/'+this.pageNo);
+        //  this.$router.push('/'+this.pageNo);
+          window.location='/'+this.pageNo;
         }
       }
     }
