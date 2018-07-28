@@ -1,7 +1,7 @@
 <template>
   <div class="wrap">
     <!-- 头部 -->
-    <blog-header :channels="channels" :channelName="channelName"></blog-header>
+    <blog-header :channels="channels" :allChannels="allChannels" :channelName="channelName"></blog-header>
     <div class="main">
       <div class="main-inner">
         <div class="blog-lf">
@@ -49,6 +49,7 @@
     data() {
       return {
         channels: [],
+        allChannels:[],
         blogList:[],
         totalPage:10,
         pageSize:0,
@@ -103,7 +104,7 @@
       }
       let endTime=Date.now();
       console.log('同构方法调用完毕,方法耗时...'+(endTime-startTime)+"ms");
-      return {channels:topChannels,recentList,hotList,recommendList,total,pageSize,pageNo,channelId,channelName,blogList:models,totalPage:Math.ceil(total/pageSize)}
+      return {channels:topChannels,allChannels,recentList,hotList,recommendList,total,pageSize,pageNo,channelId,channelName,blogList:models,totalPage:Math.ceil(total/pageSize)}
     }
   }
 </script>

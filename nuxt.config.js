@@ -23,10 +23,10 @@ module.exports = {
   */
   loading: { color: '#3B8070' },
   //配置动态效果
-  transition: {
-    name: 'page',
-    mode: 'out-in'
-  },
+  // transition: {
+  //   name: 'page',
+  //   mode: 'out-in'
+  // },
   render: {
     bundleRenderer: {
       cache: require('lru-cache')({
@@ -120,7 +120,7 @@ module.exports = {
         loader: 'vue-style-loader!css-loader'
       }
     ],
-    
+
     /*
     ** Run ESLint on save
     */

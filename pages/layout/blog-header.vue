@@ -8,7 +8,6 @@
             <li  @mouseover="getSecondChannel()">
               <nuxt-link to="/1" >首页</nuxt-link>
             </li>
-
             <li v-for="(channel,index) in channels" @mouseover="getSecondChannel(channel,$event)" :key="index">
               <nuxt-link :to="'/1-'+channel.uuid">{{channel.name}}</nuxt-link>
             </li>
@@ -18,7 +17,7 @@
           </ul>
           <ul class="second-tip" v-show="isShow" :style="{top:top+'px',left:left+'px'}">
             <li v-for="(child,index) in children" :key="index">
-              <nuxt-link :to="'/1-'+child.uuid">{{child.name}}</nuxt-link>
+              <a @click="gotoChild(child.uuid)">{{child.name}}</a>
             </li>
           </ul>
           <div :class="['tip-center',showClass?'move-top':'']" id="tip">
@@ -36,7 +35,7 @@
 <script>
     import blogQuery from '../../api/blogQuery';
     export default {
-      props:['channels','channelName'],
+      props:['channels','channelName','allChannels'],
       data(){
         return {
             children:[],
@@ -47,6 +46,7 @@
         }
       },
       mounted(){
+      console.log(this.allChannels);
         setTimeout(()=>{
           this.showClass=true
         })
@@ -66,31 +66,42 @@
             }
             return obj;
        },
+       // 内存中匹配
+       getChannelChildren(e,uuid){
+         let {allChannels}=this;
+         let children=[];
+         let {target}=e;
+         let {left,top,height,width}=this.offset(target);
+         let offsetLeft=document.querySelector(".header-inner").offsetLeft;
+         left+=16;
+           allChannels.forEach((channel)=>{
+              if(channel.pid==uuid){
+                children.push(channel);
+              }
+           })
+           if(children.length){
+             this.children=children;
+             this.top=top+height+5;
+             this.left=left-offsetLeft-width/2+30;
+             this.isShow=true;
+           }else{
+             this.children=[];
+             this.isShow=false;
+           }
+       },
         getSecondChannel(channel,e){
           if(channel){
-            let {target}=e;
-            let {left,top,height,width}=this.offset(target);
-            let offsetLeft=document.querySelector(".header-inner").offsetLeft;
-            left+=16;
             let {uuid}=channel;
-            blogQuery.getChannelChildren(uuid).then((data)=>{
-              if(data.length){
-                this.children=data;
-                this.top=top+height+5;
-                this.left=left-offsetLeft-width/2+30;
-                this.isShow=true;
-              }else{
-                this.children=[];
-                this.isShow=false;
-              }
-            })
+            this.getChannelChildren(e,uuid);
           }else{
             this.children=[];
             this.isShow=false;
-
           }
+        },
+        gotoChild(url){
+          this.isShow=false;
+          this.$router.push('/1-'+url);
         }
       }
     }
 </script>
-
