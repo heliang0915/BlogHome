@@ -6,13 +6,13 @@
           </h1>
           <ul class="nav">
             <li  @mouseover="getSecondChannel()">
-              <nuxt-link to="/1" >首页</nuxt-link>
+              <a href="/1">首页</a>
             </li>
             <li v-for="(channel,index) in channels" @mouseover="getSecondChannel(channel,$event)" :key="index">
-              <nuxt-link :to="'/1-'+channel.uuid">{{channel.name}}</nuxt-link>
+              <a :href="'/1-'+channel.uuid">{{channel.name}}</a>
             </li>
             <li @mouseover="getSecondChannel()">
-              <nuxt-link to="/1-about">关于我 </nuxt-link>
+                <a href="/1-about">关于我</a>
             </li>
           </ul>
           <ul class="second-tip" v-show="isShow" :style="{top:top+'px',left:left+'px'}">
