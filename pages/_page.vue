@@ -12,7 +12,6 @@
                 <a href="###">{{blog.title}}</a>
               </h3>
               <div class="blog-info">
-
                 <span><a class="blog-time" href="#">{{blog.date&&blog.date.indexOf('')>-1?blog.date.split(' ')[0]:blog.date}}</a></span>
                 <span><a class="blog-type" href="#">{{blog.channelName}}</a></span>
                 <span><a class="blog-comment" href="#">{{blog.pubUser==null?'系统':blog.pubUser}}发布</a></span>
@@ -30,7 +29,6 @@
           <!--分页-->
           <pagination :totalPage="totalPage" :pageNo="pageNo"></pagination>
         </div>
-
          <blogRight v-if="recentList&&hotList&&recommendList " :recentList="recentList" :hotList="hotList" :recommendList="hotList"></blogRight>
       </div>
     </div>
