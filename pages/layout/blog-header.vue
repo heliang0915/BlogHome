@@ -46,7 +46,6 @@
         }
       },
       mounted(){
-      console.log(this.allChannels);
         setTimeout(()=>{
           this.showClass=true
         })

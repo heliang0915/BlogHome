@@ -47,7 +47,7 @@
         next(){
           this.pageNo=parseInt(this.pageNo)+1>this.totalPage?this.totalPage:(parseInt(this.pageNo)+1);
           this.counter=(this.counter+1)>this.totalPage?this.totalPage:(this.counter+1);
-          console.log("this.pageNo>>>>"+this.pageNo);
+          //console.log("this.pageNo>>>>"+this.pageNo);
         //  this.$router.push('/'+this.pageNo);
         window.location='/'+this.pageNo;
         },
