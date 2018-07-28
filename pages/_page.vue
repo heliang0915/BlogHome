@@ -78,7 +78,8 @@
     },
     methods:{
       gotoDetail(uuid,pageNo){
-        this.$router.push(`/detail/${uuid}`);
+        //this.$router.push(`/detail/${uuid}`);
+        window.location=`/detail/${uuid}`;
       }
     },
     async asyncData({params}) {
