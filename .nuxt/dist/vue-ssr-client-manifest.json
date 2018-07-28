@@ -7,16 +7,16 @@
     "pages/layout/blog-footer.9ede9c582d3f6e2c9180.js",
     "pages/layout/blog-rg.2fd00f8724952466f7db.js",
     "layouts/default.0f6aee8ea234e1460154.js",
-    "pages/detail/_id.d9a0fe2200efb0d415f9.js",
+    "pages/detail/_id.94d990fd820671eff18f.js",
     "vendor.3a30a35ea292abb15fe5.js",
     "app.97e06e83de6d57f136a4.js",
-    "manifest.7cb4da829b004999e591.js",
+    "manifest.75ad9060cc0cfaa30666.js",
     "LICENSES",
     "index.spa.html",
     "index.ssr.html"
   ],
   "initial": [
-    "manifest.7cb4da829b004999e591.js",
+    "manifest.75ad9060cc0cfaa30666.js",
     "vendor.3a30a35ea292abb15fe5.js",
     "app.97e06e83de6d57f136a4.js"
   ],
@@ -27,7 +27,7 @@
     "pages/layout/blog-footer.9ede9c582d3f6e2c9180.js",
     "pages/layout/blog-rg.2fd00f8724952466f7db.js",
     "layouts/default.0f6aee8ea234e1460154.js",
-    "pages/detail/_id.d9a0fe2200efb0d415f9.js"
+    "pages/detail/_id.94d990fd820671eff18f.js"
   ],
   "modules": {
     "21944694": [

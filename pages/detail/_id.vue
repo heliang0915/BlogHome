@@ -100,7 +100,11 @@
       }
       let data = await api.blogQuery.getBlog(tempUUID);
       let {topChannels,module,recentList,recommendList,hotList,allChannels}=data;
-      let channelName=util.getChannelName(module.tag,allChannels);
+      let channelName="";
+      if(module.tag){
+        channelName=util.getChannelName(module.tag,allChannels);
+      }
+      //let channelName=util.getChannelName(module.tag,allChannels);
       if(tempUUID=="about"){
         channelName="关于我";
       }
