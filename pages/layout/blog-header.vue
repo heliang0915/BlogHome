@@ -100,7 +100,7 @@
         },
         gotoChild(url){
           this.isShow=false;
-          this.$router.push('/1-'+url);
+          window.location='/1-'+url;
         }
       }
     }
