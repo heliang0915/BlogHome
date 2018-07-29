@@ -35,29 +35,29 @@
          first(){
            let {channelId}=this;
            this.pageNo=1;
-           window.location='/'+this.pageNo+(channelId==null?'':'-'+channelId);
+           window.location='/'+this.pageNo+((channelId==null||channelId==0)?'':'-'+channelId);
          },
          pre(){
            let {channelId}=this;
            this.pageNo=parseInt(this.pageNo)-1>0?parseInt(this.pageNo)-1:1;
            this.counter=(this.counter-1)>0?(this.counter-1):0;
-           window.location='/'+this.pageNo+(channelId==null?'':'-'+channelId);
+           window.location='/'+this.pageNo+((channelId==null||channelId==0)?'':'-'+channelId);
          },
         next(){
           let {channelId}=this;
           this.pageNo=parseInt(this.pageNo)+1>this.totalPage?this.totalPage:(parseInt(this.pageNo)+1);
           this.counter=(this.counter+1)>this.totalPage?this.totalPage:(this.counter+1);
-          window.location='/'+this.pageNo+(channelId==null?'':'-'+channelId);
+          window.location='/'+this.pageNo+((channelId==null||channelId==0)?'':'-'+channelId);
         },
         go(pageNo){
           let {channelId}=this;
           this.pageNo=pageNo;
-          window.location='/'+this.pageNo+(channelId==null?'':'-'+channelId);
+          window.location='/'+this.pageNo+((channelId==null||channelId==0)?'':'-'+channelId);
         },
         last(){
           let {channelId}=this;
           this.pageNo=this.totalPage;
-          window.location='/'+this.pageNo+(channelId==null?'':'-'+channelId);
+          window.location='/'+this.pageNo+((channelId==null||channelId==0)?'':'-'+channelId);
         }
       }
     }
