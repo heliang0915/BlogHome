@@ -101,7 +101,7 @@
       }
       pageNo=parseInt(pageNo);
       //左侧列表
-      let data=await api.blogQuery.getBlogList(pageNo,7,channelId);
+      let data=await api.blogQuery.getBlogList(pageNo,5,channelId);
       let {models,topChannels,total,pageSize,recentList,recommendList,hotList,allChannels}=data;
       let channelName=util.getChannelName(channelId,allChannels);
       if(channelId=="about"){
