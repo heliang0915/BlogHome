@@ -27,7 +27,7 @@
             </li>
           </ul>
           <!--分页-->
-          <pagination :totalPage="totalPage" :pageNo="pageNo"></pagination>
+          <pagination :channelId="channelId" :totalPage="totalPage" :pageNo="pageNo"></pagination>
         </div>
          <blogRight :moveClass="rightClass" v-if="recentList&&hotList&&recommendList " :recentList="recentList" :hotList="hotList" :recommendList="hotList"></blogRight>
       </div>
