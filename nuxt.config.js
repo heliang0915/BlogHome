@@ -70,7 +70,7 @@ module.exports = {
       //   //   return '/user/' + user.id
       //   // })
       // })
-      return axios.get(`${config.api.baseURL}/web/getBlogTotal`)
+      return axios.get(`${config.api.baseURL}/getBlogTotal`)
         .then((res) => {
           let total=res.data;
           let ary=[];
