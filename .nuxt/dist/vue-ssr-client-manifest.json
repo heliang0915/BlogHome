@@ -8,16 +8,16 @@
     "pages/layout/blog-footer.9ede9c582d3f6e2c9180.js",
     "pages/layout/blog-rg.c878994d2399a1890aad.js",
     "layouts/default.0f6aee8ea234e1460154.js",
-    "pages/_page.de5d7db37d3bc309aad5.js",
+    "pages/_page.dbf41f35a57ac3b9f401.js",
     "vendor.88b4a6db135881807255.js",
     "app.e883cc7241e4c119d087.js",
-    "manifest.0fe7f0a594a4b583a174.js",
+    "manifest.0086af5afb6db1eedf8e.js",
     "LICENSES",
     "index.spa.html",
     "index.ssr.html"
   ],
   "initial": [
-    "manifest.0fe7f0a594a4b583a174.js",
+    "manifest.0086af5afb6db1eedf8e.js",
     "vendor.88b4a6db135881807255.js",
     "app.e883cc7241e4c119d087.js"
   ],
@@ -28,7 +28,7 @@
     "pages/layout/blog-footer.9ede9c582d3f6e2c9180.js",
     "pages/layout/blog-rg.c878994d2399a1890aad.js",
     "layouts/default.0f6aee8ea234e1460154.js",
-    "pages/_page.de5d7db37d3bc309aad5.js"
+    "pages/_page.dbf41f35a57ac3b9f401.js"
   ],
   "modules": {
     "21944694": [
