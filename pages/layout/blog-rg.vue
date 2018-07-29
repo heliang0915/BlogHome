@@ -1,5 +1,5 @@
 <template>
-  <div class="blog-rg">
+  <div class="blog-rg" :class="moveClass">
     <!--小板块-->
     <div class="blog-block">
       <h3><a href="">近期文章</a></h3>
@@ -31,6 +31,6 @@
 </template>
 <script>
     export default {
-        props:['recentList','hotList','recommendList']
+        props:['recentList','hotList','recommendList','moveClass']
     }
 </script>

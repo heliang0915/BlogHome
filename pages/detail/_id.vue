@@ -4,7 +4,7 @@
     <blog-header :channels="channels" :channelName="channelName"></blog-header>
     <div class="main">
       <div class="main-inner">
-        <div class="blog-lf">
+        <div class="blog-lf" :class="leftClass">
           <div class="detail-wrap">
             <div class="blog-area">
               <h1> {{blog.title}}</h1>
@@ -42,7 +42,7 @@
             <!--</div>-->
           </div>
         </div>
-        <blogRight :recentList="recentList" :hotList="hotList" :recommendList="recommendList"></blogRight>
+        <blogRight :moveClass="rightClass" :recentList="recentList" :hotList="hotList" :recommendList="recommendList"></blogRight>
       </div>
     </div>
     <blogFooter></blogFooter>
@@ -80,7 +80,9 @@
               [{ 'align': [] }]
             ]
           }
-        }
+        },
+        leftClass:'',
+        rightClass:''
       }
     },
     //SEO-header
@@ -88,18 +90,26 @@
       let {title}=this.blog;
       return this.$seo(`${title}`, `详情页面${title}`)
     },
+    mounted(){
+      this.leftClass="blog-lf-move";
+      this.rightClass="blog-rg-move";
+    },
     async asyncData({params}) {
       let uuid=params.id;
       let pageNo=0;
       let total=0;
       let tempUUID=0;
-      if(uuid.indexOf('-')){
+      console.log("uuid:::::::::"+uuid);
+      if(uuid.indexOf('-')>-1){
         tempUUID=uuid.split('-')[0];
         pageNo=uuid.split('-')[1];
         total=uuid.split('-')[2];
+      }else{
+         tempUUID=uuid;
       }
       let data = await api.blogQuery.getBlog(tempUUID);
       let {topChannels,module,recentList,recommendList,hotList,allChannels}=data;
+      console.log(module)
       let channelName="";
       if(module.tag){
         channelName=util.getChannelName(module.tag,allChannels);

@@ -4,7 +4,7 @@
     <blog-header :channels="channels" :allChannels="allChannels" :channelName="channelName"></blog-header>
     <div class="main">
       <div class="main-inner">
-        <div class="blog-lf">
+        <div class="blog-lf" :class="leftClass">
           <ul class="blog-list" v-if="blogList&&blogList.length>0">
 
             <li  class="blog-item" @click="gotoDetail(blog.uuid,(index+1)+((pageNo-1)*pageSize))" :key="index" v-for="(blog,index) in blogList">
@@ -29,7 +29,7 @@
           <!--分页-->
           <pagination :totalPage="totalPage" :pageNo="pageNo"></pagination>
         </div>
-         <blogRight v-if="recentList&&hotList&&recommendList " :recentList="recentList" :hotList="hotList" :recommendList="hotList"></blogRight>
+         <blogRight :moveClass="rightClass" v-if="recentList&&hotList&&recommendList " :recentList="recentList" :hotList="hotList" :recommendList="hotList"></blogRight>
       </div>
     </div>
     <blogFooter></blogFooter>
@@ -56,6 +56,8 @@
         channelName:'',
         index:0,
         total:0,
+        leftClass:'',
+        rightClass:''
       }
     },
     filters:{
@@ -67,6 +69,10 @@
         }
         return temp;
       }
+    },
+    mounted(){
+      this.leftClass="blog-lf-move";
+      this.rightClass="blog-rg-move";
     },
     components: {
       blogHeader,
