@@ -104,6 +104,7 @@
       let data=await api.blogQuery.getBlogList(pageNo,5,channelId);
       let {models,topChannels,total,pageSize,recentList,recommendList,hotList,allChannels}=data;
       let channelName=util.getChannelName(channelId,allChannels);
+      console.log("channelId::::"+channelId);
       if(channelId=="about"){
         channelName="关于我";
       }

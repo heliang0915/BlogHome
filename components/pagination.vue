@@ -18,7 +18,6 @@
 <script>
     export default {
       props:['totalPage','pageNo','channelId'],
-
       data(){
         return {
           pageMaxNum:5
@@ -34,17 +33,20 @@
       },
       methods:{
          first(){
+           let {channelId}=this;
            this.pageNo=1;
            //this.$router.push('/'+this.pageNo);
            window.location='/'+this.pageNo+(channelId==null?'':'-'+channelId);
          },
          pre(){
+           let {channelId}=this;
            this.pageNo=parseInt(this.pageNo)-1>0?parseInt(this.pageNo)-1:1;
            this.counter=(this.counter-1)>0?(this.counter-1):0;
            //this.$router.push('/'+this.pageNo);
            window.location='/'+this.pageNo+(channelId==null?'':'-'+channelId);
          },
         next(){
+          let {channelId}=this;
           this.pageNo=parseInt(this.pageNo)+1>this.totalPage?this.totalPage:(parseInt(this.pageNo)+1);
           this.counter=(this.counter+1)>this.totalPage?this.totalPage:(this.counter+1);
           //console.log("this.pageNo>>>>"+this.pageNo);
@@ -52,11 +54,13 @@
         window.location='/'+this.pageNo+(channelId==null?'':'-'+channelId);
         },
         go(pageNo){
+          let {channelId}=this;
           this.pageNo=pageNo;
           //this.$router.push('/'+this.pageNo);
           window.location='/'+this.pageNo+(channelId==null?'':'-'+channelId);
         },
         last(){
+          let {channelId}=this;
           this.pageNo=this.totalPage;
         //  this.$router.push('/'+this.pageNo);
           window.location='/'+this.pageNo+(channelId==null?'':'-'+channelId);
