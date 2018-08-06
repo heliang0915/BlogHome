@@ -109,7 +109,6 @@
       }
       let data = await api.blogQuery.getBlog(tempUUID);
       let {topChannels,module,recentList,recommendList,hotList,allChannels}=data;
-      console.log(module)
       let channelName="";
       if(module.tag){
         channelName=util.getChannelName(module.tag,allChannels);
