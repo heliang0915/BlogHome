@@ -99,7 +99,7 @@
       let pageNo=0;
       let total=0;
       let tempUUID=0;
-      console.log("uuid:::::::::"+uuid);
+      // console.log("uuid:::::::::"+uuid);
       if(uuid.indexOf('-')>-1){
         tempUUID=uuid.split('-')[0];
         pageNo=uuid.split('-')[1];
@@ -110,13 +110,19 @@
       let data = await api.blogQuery.getBlog(tempUUID);
       let {topChannels,module,recentList,recommendList,hotList,allChannels}=data;
       let channelName="";
+      console.log(JSON.stringify(module.tag));
       if(module.tag){
         channelName=util.getChannelName(module.tag,allChannels);
       }
+
+
       //let channelName=util.getChannelName(module.tag,allChannels);
       if(tempUUID=="about"){
         channelName="关于我";
       }
+
+      console.log("channels:::::::::::"+topChannels.length);
+
       return {uuid:tempUUID,total,pageNo,channels: topChannels,blog:module,recentList,recommendList,hotList,channelName}
     },
     methods:{

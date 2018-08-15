@@ -67,6 +67,7 @@ let blogQuery={
      getBlogTotal(){
        return new Promise((resolve, reject)=>{
          fetch.get(`/web/getBlogTotal`).then((data)=>{
+           console.log("获取博客总数!!!!");
            resolve(data);
          }).catch((err)=>{
            console.log(err);

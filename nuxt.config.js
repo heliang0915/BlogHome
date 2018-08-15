@@ -10,12 +10,14 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '首页' }
+      { hid: 'description', name: 'description', content: '首页' },
+      { 'http-equiv': 'X-dns-prefetch-control', content: 'on' }
       // ,
       // { 'http-equiv': 'Content-Security-Policy', content: 'upgrade-insecure-requests' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {rel:'dns-prefetch', href:'https://bloghome.top'}
     ]
   },
   /*
@@ -70,16 +72,36 @@ module.exports = {
       //   //   return '/user/' + user.id
       //   // })
       // })
-      return axios.get(`${config.api.baseURL}/getBlogTotal`)
+      return axios.post(`${config.api.proxyBaseURL}/wx/blogList`,{
+          page:1,
+          pageSize:10000,
+          params:{}
+      })
         .then((res) => {
-          let total=res.data;
+          // let data=res.data;
+          // console.log(data);
+          // data=JSON.parse(data)
+          // console.log("返回数据...."+Object.keys(data));
+          let {total,models}=res.data;
+          // let total=res.data.total;
+          let firstPages=[];
+          let secondPages=[];
           let ary=[];
-          for(var i=0;i<total;i++){
+          //初始化1级页
+          for(var i=0;i<Math.ceil(total/7);i++){
             ary.push(i);
           }
-          return ary.map((page)=>{
-               return `/${page}`
-            })
+          firstPages=ary.map((page)=>{
+            return `/${page+1}`
+          });
+          //二级页面
+          secondPages=models.map((item)=>{
+                return `/detail/${item.uuid}`
+          })
+          ary=firstPages.concat(secondPages);
+          return ary;
+        }).catch((err)=>{
+           console.log("err::::"+err);
         })
     }
   },
