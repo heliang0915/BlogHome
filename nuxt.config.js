@@ -1,29 +1,49 @@
-var axios=require('axios');
-var config=require('./config');
-var bodyParser=require('body-parser')
+var axios = require('axios');
+var config = require('./config');
+var bodyParser = require('body-parser');
+var WebPWebpackPlugin=require('webp-webpack-plugin');
 module.exports = {
   /*
-  ** Headers of the page
-  */
+   ** Headers of the page
+   */
   head: {
     title: '前端日记',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '首页' },
-      { 'http-equiv': 'X-dns-prefetch-control', content: 'on' }
+    meta: [{
+        charset: 'utf-8'
+      },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1'
+      },
+      {
+        hid: 'description',
+        name: 'description',
+        content: '首页'
+      },
+      {
+        'http-equiv': 'X-dns-prefetch-control',
+        content: 'on'
+      }
       // ,
       // { 'http-equiv': 'Content-Security-Policy', content: 'upgrade-insecure-requests' }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      {rel:'dns-prefetch', href:'https://bloghome.top'}
+    link: [{
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: '/favicon.ico'
+      },
+      {
+        rel: 'dns-prefetch',
+        href: 'https://bloghome.top'
+      }
     ]
   },
   /*
-  ** Customize the progress bar color
-  */
-  loading: { color: '#3B8070' },
+   ** Customize the progress bar color
+   */
+  loading: {
+    color: '#3B8070'
+  },
   //配置动态效果
   // transition: {
   //   name: 'page',
@@ -58,9 +78,8 @@ module.exports = {
       sortClassName: false,
       trimCustomFragments: true,
       useShortDoctype: true
-    }
-    ,
-    routes: function () {
+    },
+    routes: function() {
       //生成入口
       // return blogQuery.getBlogTotal().then((res) => {
       //
@@ -72,36 +91,39 @@ module.exports = {
       //   //   return '/user/' + user.id
       //   // })
       // })
-      return axios.post(`${config.api.proxyBaseURL}/wx/blogList`,{
-          page:1,
-          pageSize:10000,
-          params:{}
-      })
+      return axios.post(`${config.api.proxyBaseURL}/wx/blogList`, {
+          page: 1,
+          pageSize: 10000,
+          params: {}
+        })
         .then((res) => {
           // let data=res.data;
           // console.log(data);
           // data=JSON.parse(data)
           // console.log("返回数据...."+Object.keys(data));
-          let {total,models}=res.data;
+          let {
+            total,
+            models
+          } = res.data;
           // let total=res.data.total;
-          let firstPages=[];
-          let secondPages=[];
-          let ary=[];
+          let firstPages = [];
+          let secondPages = [];
+          let ary = [];
           //初始化1级页
-          for(var i=0;i<Math.ceil(total/7);i++){
+          for (var i = 0; i < Math.ceil(total / 7); i++) {
             ary.push(i);
           }
-          firstPages=ary.map((page)=>{
+          firstPages = ary.map((page) => {
             return `/${page+1}`
           });
           //二级页面
-          secondPages=models.map((item)=>{
-                return `/detail/${item.uuid}`
+          secondPages = models.map((item) => {
+            return `/detail/${item.uuid}`
           })
-          ary=firstPages.concat(secondPages);
+          ary = firstPages.concat(secondPages);
           return ary;
-        }).catch((err)=>{
-           console.log("err::::"+err);
+        }).catch((err) => {
+          console.log("err::::" + err);
         })
     }
   },
@@ -128,25 +150,40 @@ module.exports = {
   //   ]
   // ],
   //
-  plugins: [
-    { src: '~/plugins/vue-editor.js', ssr: false },
-    { src: '~/plugins/seo.js'}
+  plugins: [{
+      src: '~/plugins/vue-editor.js',
+      ssr: false
+    },
+    {
+      src: '~/plugins/seo.js'
+    }
   ],
   /*
-  ** Build configuration
-  */
+   ** Build configuration
+   */
   build: {
-    loaders:[
-      {
-        test: /\.css$/,
-        loader: 'vue-style-loader!css-loader'
-      }
-    ],
+    loaders: [{
+      test: /\.css$/,
+      loader: 'vue-style-loader!css-loader'
+    }],
+    plugins: [
+      new WebPWebpackPlugin({
+        match: /(jpe?g|png)$/,
+        webp: {
+          quality: 80,
+          inject: true, // inject the default runtime code
+          injectCode: '' // inject your code
+        }
+      })
+    ]
 
     /*
-    ** Run ESLint on save
-    */
-    extend (config, { isDev, isClient }) {
+     ** Run ESLint on save
+     */
+    extend(config, {
+      isDev,
+      isClient
+    }) {
       if (isDev && isClient) {
         config.module.rules.push({
           enforce: 'pre',
