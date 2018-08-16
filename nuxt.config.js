@@ -1,7 +1,6 @@
 var axios = require('axios');
 var config = require('./config');
 var bodyParser = require('body-parser');
-var WebPWebpackPlugin=require('webp-webpack-plugin');
 module.exports = {
   /*
    ** Headers of the page
@@ -166,16 +165,6 @@ module.exports = {
       test: /\.css$/,
       loader: 'vue-style-loader!css-loader'
     }],
-    plugins: [
-      new WebPWebpackPlugin({
-        match: /(jpe?g|png)$/,
-        webp: {
-          quality: 80,
-          inject: true, // inject the default runtime code
-          injectCode: '' // inject your code
-        }
-      })
-    ]
 
     /*
      ** Run ESLint on save
