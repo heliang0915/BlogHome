@@ -1,5 +1,5 @@
 <template>
-      <div class="header">
+      <div class="header" :style="{background:'url(' + bg + ')'}">
         <div class="header-inner">
           <h1>
             <a href="#">前端日记</a>
@@ -42,12 +42,15 @@
             top:0,
             left:0,
             isShow:false,
-            showClass:false
+            showClass:false,
+            bg:''
         }
       },
+
       mounted(){
         setTimeout(()=>{
-          this.showClass=true
+          this.showClass=true;
+          this.bg='https://www.pimage.top/cf9d8f85368d2d81309c46595dbf2090?w=2000&q=30';
         })
       },
       methods:{
