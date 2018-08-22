@@ -43,14 +43,14 @@
             left:0,
             isShow:false,
             showClass:false,
-            bg:''
+            bg:'https://www.pimage.top/cf9d8f85368d2d81309c46595dbf2090?w=2000&q=30'
         }
       },
 
       mounted(){
         setTimeout(()=>{
           this.showClass=true;
-          this.bg='https://www.pimage.top/cf9d8f85368d2d81309c46595dbf2090?w=2000&q=30';
+          // this.bg='https://www.pimage.top/cf9d8f85368d2d81309c46595dbf2090?w=2000&q=30';
         })
       },
       methods:{

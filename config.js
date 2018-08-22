@@ -6,8 +6,6 @@ let config={
       baseURL:'http://127.0.0.1:5000',
       // proxyBaseURL: 'http://www.anhr.top:8080/'// ,
       proxyBaseURL: 'http://127.0.0.1:8080'// ,
-      // proxyBaseURL: 'https://blogapi.top'// ,
-      // baseURL: 'http://172.17.113.111:8080'
     }
 }
 module.exports= config;
