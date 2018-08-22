@@ -46,7 +46,6 @@
             bg:''
         }
       },
-
       mounted(){
         let _this=this;
         setTimeout(()=>{
