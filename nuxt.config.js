@@ -174,10 +174,8 @@ module.exports = {
    ** Build configuration
    */
   build: {
-    loaders: [{
-      test: /\.(gif|png|jpg|woff|svg|eot|ttf)\??.*$/,
-      loader: 'url-loader?limit = 100 &name = font/[name]. [ext]'
-    },{
+    loaders: [
+      {
       test: /\.css$/,
       loader: 'vue-style-loader!css-loader'
     }],
