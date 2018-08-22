@@ -35,7 +35,20 @@ module.exports = {
         rel: 'dns-prefetch',
         href: 'https://bloghome.top'
       }
-    ]
+    ],
+    script:[{
+      type: 'text/javascript',
+      src:"//cdn.bootcss.com/vue/2.2.5/vue.min.js"
+    },{
+      type: 'text/javascript',
+      src:"//cdn.bootcss.com/vue-router/2.3.0/vue-router.min.js"
+    },{
+      type: 'text/javascript',
+      src:"//cdn.bootcss.com/vuex/2.2.1/vuex.min.js"
+    },{
+      type: 'text/javascript',
+      src:"//cdn.bootcss.com/axios/0.15.3/axios.min.js"
+    }]
   },
   /*
    ** Customize the progress bar color
@@ -166,6 +179,7 @@ module.exports = {
       loader: 'vue-style-loader!css-loader'
     }],
 
+    // analyze: true,
     /*
      ** Run ESLint on save
      */
@@ -173,6 +187,14 @@ module.exports = {
       isDev,
       isClient
     }) {
+      if(isClient&&!isDev){
+        config.externals={
+          'vue': 'Vue',
+          'vue-router': 'VueRouter',
+          'vuex': 'Vuex',
+          'axios': 'axios'
+         }
+      }
       if (isDev && isClient) {
         config.module.rules.push({
           enforce: 'pre',
