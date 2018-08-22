@@ -38,15 +38,19 @@ module.exports = {
     ],
     script:[{
       type: 'text/javascript',
+      defer:'defer',
       src:"//cdn.bootcss.com/vue/2.2.5/vue.min.js"
     },{
       type: 'text/javascript',
+      defer:'defer',
       src:"//cdn.bootcss.com/vue-router/2.3.0/vue-router.min.js"
     },{
       type: 'text/javascript',
+      defer:'defer',
       src:"//cdn.bootcss.com/vuex/2.2.1/vuex.min.js"
     },{
       type: 'text/javascript',
+      defer:'defer',
       src:"//cdn.bootcss.com/axios/0.15.3/axios.min.js"
     }]
   },
