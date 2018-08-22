@@ -51,16 +51,10 @@
         let _this=this;
         setTimeout(()=>{
           this.showClass=true;
-          //
         })
-        var image=new Image();
-        image.src="https://www.pimage.top/cf9d8f85368d2d81309c46595dbf2090?w=2000&q=30";
-        image.onload=function(){
-            _this.bg=this.src;
-        }
-        // setTimeout(()=>{
-        //   this.bg='https://www.pimage.top/cf9d8f85368d2d81309c46595dbf2090?w=2000&q=30';
-        // },3000)
+        setTimeout(()=>{
+          this.bg='https://www.pimage.top/cf9d8f85368d2d81309c46595dbf2090?w=2000&q=30';
+        },30000)
       },
       methods:{
          offset(elem){
