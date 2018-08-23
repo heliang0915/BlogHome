@@ -34,6 +34,8 @@
 </template>
 <script>
     import blogQuery from '../../api/blogQuery';
+    let config=require('../../config');
+    let {staticUrl}=config;
     export default {
       props:['channels','channelName','allChannels'],
       data(){
@@ -52,7 +54,7 @@
           this.showClass=true;
         })
         // setTimeout(()=>{
-          this.bg='https://www.pimage.top/cf9d8f85368d2d81309c46595dbf2090?w=2000&q=30';
+          this.bg=`${staticUrl}/images/index-bg.jpg`;
         // },2000)
       },
       methods:{
