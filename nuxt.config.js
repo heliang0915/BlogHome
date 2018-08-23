@@ -35,7 +35,7 @@ module.exports = {
       },
       {
         rel: 'dns-prefetch',
-        href: 'https://bloghome.top'
+        href: 'https://bhome.blogapi.top'
       }
     ],
     script:[{
