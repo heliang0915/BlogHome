@@ -54,6 +54,10 @@ module.exports = {
       type: 'text/javascript',
       defer:'defer',
       src:`${staticUrl}/js/libs/axios.min.js`
+    },{
+      type: 'text/javascript',
+      defer:'defer',
+      src:`${staticUrl}/js/libs/vue-meta.min.js`
     }]
   },
   /*
@@ -181,15 +185,15 @@ module.exports = {
    ** Build configuration
    */
   build: {
-  //   loaders: [
-  //     {
-  //     test: /\.css$/,
-  //     loader: 'vue-style-loader!css-loader'
-  //   }
-  // ],
-    extractCSS: {allChunks: true },
+    loaders: [
+      {
+      test: /\.css$/,
+      loader: 'vue-style-loader!css-loader'
+    }
+  ],
+    // extractCSS: {allChunks: true },
 
-    // analyze: true,
+    analyze: true,
     /*
      ** Run ESLint on save
      */
@@ -201,6 +205,7 @@ module.exports = {
         /*忽略第三方库*/
         config.externals={
           'vue': 'Vue',
+          'vue-meta': 'vueMeta',
           'vue-router': 'VueRouter',
           'vuex': 'Vuex',
           'axios': 'axios'
