@@ -205,7 +205,7 @@ module.exports = {
         /*忽略第三方库*/
         config.externals={
           'vue': 'Vue',
-          'vue-meta': 'vueMeta',
+          'vue-meta': 'VueMeta',
           'vue-router': 'VueRouter',
           'vuex': 'Vuex',
           'axios': 'axios'

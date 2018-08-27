@@ -8,16 +8,16 @@
     "pages/layout/blog-rg.ba86a2172bea329272ee.js",
     "layouts/errorLayout.5fb192ce10d2fefed42c.js",
     "pages/detail/_id.816f7c92def0488c407c.js",
-    "vendor.66bf94d8b26e721ca3a9.js",
+    "vendor.24495927fbee947affe8.js",
     "app.33f4e12e790068bc2e4b.js",
-    "manifest.f98f9e554259a29e4905.js",
+    "manifest.57c53b75282bfdc1c644.js",
     "LICENSES",
     "index.spa.html",
     "index.ssr.html"
   ],
   "initial": [
-    "manifest.f98f9e554259a29e4905.js",
-    "vendor.66bf94d8b26e721ca3a9.js",
+    "manifest.57c53b75282bfdc1c644.js",
+    "vendor.24495927fbee947affe8.js",
     "app.33f4e12e790068bc2e4b.js"
   ],
   "async": [
@@ -291,7 +291,7 @@
     "cfd14aa0": [
       7
     ],
-    "4fb5f35a": [
+    "5390577a": [
       7
     ],
     "58a5aab2": [
