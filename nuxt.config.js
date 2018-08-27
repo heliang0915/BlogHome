@@ -181,11 +181,12 @@ module.exports = {
    ** Build configuration
    */
   build: {
-    loaders: [
-      {
-      test: /\.css$/,
-      loader: 'vue-style-loader!css-loader'
-    }],
+  //   loaders: [
+  //     {
+  //     test: /\.css$/,
+  //     loader: 'vue-style-loader!css-loader'
+  //   }
+  // ],
     extractCSS: {allChunks: true },
 
     // analyze: true,
