@@ -168,10 +168,11 @@ module.exports = {
   //   ]
   // ],
   //
-  plugins: [{
-      src: '~/plugins/vue-editor.js',
-      ssr: false
-    },
+  plugins: [
+    // {
+    //   src: '~/plugins/vue-editor.js',
+    //   ssr: false
+    // },
     {
       src: '~/plugins/seo.js'
     }
@@ -185,6 +186,7 @@ module.exports = {
       test: /\.css$/,
       loader: 'vue-style-loader!css-loader'
     }],
+    extractCSS: {allChunks: true },
 
     // analyze: true,
     /*
@@ -195,6 +197,7 @@ module.exports = {
       isClient
     }) {
       if(isClient&&!isDev){
+        /*忽略第三方库*/
         config.externals={
           'vue': 'Vue',
           'vue-router': 'VueRouter',
@@ -203,6 +206,8 @@ module.exports = {
          }
       }
       if (isDev && isClient) {
+
+
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,
