@@ -53,11 +53,24 @@
         setTimeout(()=>{
           this.showClass=true;
         })
-        // setTimeout(()=>{
           this.bg=`${staticUrl}/images/index-bg.jpg`;
-        // },2000)
+        setTimeout(()=>{
+          _this.loadBaidu();
+        },2000)
       },
       methods:{
+        loadBaidu(){
+          var bp = document.createElement('script');
+          var curProtocol = window.location.protocol.split(':')[0];
+          if (curProtocol === 'https') {
+              bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+          }
+          else {
+              bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+          }
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(bp, s);
+        },
          offset(elem){
             var obj={
               left:elem.offsetLeft,
@@ -110,18 +123,4 @@
         }
       }
     }
-</script>
-<script type="text/javascript">
-    (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      if (curProtocol === 'https') {
-          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-      }
-      else {
-          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-      }
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-    })();
 </script>
