@@ -2,32 +2,32 @@
   "publicPath": "/_nuxt/",
   "all": [
     "layouts/default.791b5760f02201ee09b2.js",
-    "pages/_page.6860cfafcd2c5e968052.js",
-    "pages/layout/blog-header.b3e717c64e103db49059.js",
-    "pages/layout/blog-footer.ffdb2fe3363065585649.js",
-    "pages/layout/blog-rg.ba86a2172bea329272ee.js",
+    "pages/_page.6fa7b2c3f66eb69f9c96.js",
+    "pages/layout/blog-footer.06e795ee12a0dfcb8034.js",
+    "pages/layout/blog-rg.bfed853512476f799253.js",
+    "pages/layout/blog-header.19ffd9cda6884f4409ac.js",
     "layouts/errorLayout.5fb192ce10d2fefed42c.js",
-    "pages/detail/_id.816f7c92def0488c407c.js",
+    "pages/detail/_id.862654d6c6adc9385395.js",
     "vendor.24495927fbee947affe8.js",
-    "app.d37f2a98a5db8b10d8d5.js",
-    "manifest.ce592ecee3512d1ad723.js",
+    "app.0347dc198545e5f95b84.js",
+    "manifest.79d46f8a3f9e768afbad.js",
     "LICENSES",
     "index.spa.html",
     "index.ssr.html"
   ],
   "initial": [
-    "manifest.ce592ecee3512d1ad723.js",
+    "manifest.79d46f8a3f9e768afbad.js",
     "vendor.24495927fbee947affe8.js",
-    "app.d37f2a98a5db8b10d8d5.js"
+    "app.0347dc198545e5f95b84.js"
   ],
   "async": [
     "layouts/default.791b5760f02201ee09b2.js",
-    "pages/_page.6860cfafcd2c5e968052.js",
-    "pages/layout/blog-header.b3e717c64e103db49059.js",
-    "pages/layout/blog-footer.ffdb2fe3363065585649.js",
-    "pages/layout/blog-rg.ba86a2172bea329272ee.js",
+    "pages/_page.6fa7b2c3f66eb69f9c96.js",
+    "pages/layout/blog-footer.06e795ee12a0dfcb8034.js",
+    "pages/layout/blog-rg.bfed853512476f799253.js",
+    "pages/layout/blog-header.19ffd9cda6884f4409ac.js",
     "layouts/errorLayout.5fb192ce10d2fefed42c.js",
-    "pages/detail/_id.816f7c92def0488c407c.js"
+    "pages/detail/_id.862654d6c6adc9385395.js"
   ],
   "modules": {
     "12254255": [
@@ -222,6 +222,12 @@
     "312245af": [
       8
     ],
+    "71f87f9e": [
+      7
+    ],
+    "2ea586e5": [
+      7
+    ],
     "a95f9668": [
       7
     ],
@@ -369,15 +375,6 @@
     "0715910d": [
       7
     ],
-    "7f8483d2": [
-      7
-    ],
-    "2ea586e5": [
-      7
-    ],
-    "71f87f9e": [
-      7
-    ],
     "6aaeb05e": [
       7
     ],
@@ -479,6 +476,9 @@
     ],
     "44f24bba": [
       8
+    ],
+    "7f8483d2": [
+      7
     ],
     "065e8940": [
       7
