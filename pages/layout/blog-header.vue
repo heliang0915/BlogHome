@@ -56,7 +56,7 @@
           this.bg=`${staticUrl}/images/index-bg.jpg`;
         setTimeout(()=>{
           _this.loadBaidu();
-        },2000)
+        },5000)
       },
       methods:{
         loadBaidu(){
