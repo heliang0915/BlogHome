@@ -56,6 +56,7 @@
           this.bg=`${staticUrl}/images/index-bg.jpg`;
         setTimeout(()=>{
           _this.loadBaidu();
+          _this.load360();
         },5000)
       },
       methods:{
@@ -70,6 +71,10 @@
           }
           var s = document.getElementsByTagName("script")[0];
           s.parentNode.insertBefore(bp, s);
+        },
+        load360(){
+          var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d5a190fe0d02f805bc321f332cf446a":"https://jspassport.ssl.qhimg.com/11.0.1.js?5d5a190fe0d02f805bc321f332cf446a";
+          document.write('<script src="' + src + '" id="sozz"><\/script>');
         },
          offset(elem){
             var obj={
