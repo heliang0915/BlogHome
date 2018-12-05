@@ -4,7 +4,6 @@
     尾部
   </div>
 </template>
-
 <script>
     export default {
        mounted(){
@@ -17,18 +16,22 @@
            s.parentNode.insertBefore(hm, s);
         })();
        //百度自动推送
-       // (function(){
-       //   var bp = document.createElement('script');
-       //   var curProtocol = window.location.protocol.split(':')[0];
-       //   if (curProtocol === 'https'){
-       //     bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-       //   }
-       //   else{
-       //     bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-       //   }
-       //   var s = document.getElementsByTagName("script")[0];
-       //   s.parentNode.insertBefore(bp, s);
-       // })();
+        setTimeout(function(){
+          (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https'){
+              bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else{
+              bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+          })();
+          console.log('百度自动推送....');
+        },1000)
+
 	// var tip= document.querySelector('#tip')
         //  setTimeout(function(){
         //    tip.className="tip-center move-top"
