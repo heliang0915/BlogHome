@@ -13,7 +13,7 @@ module.exports = {
         charset: 'utf-8'
       },
       {
-        httpEquiv:"Content-Type",
+        "http-equiv":"Content-Type",
         content:"text/html; charset=UTF-8"
       },
       {
