@@ -55,8 +55,8 @@
         })
           this.bg=`${staticUrl}/images/index-bg.jpg`;
         setTimeout(()=>{
-          _this.loadBaidu();
-          _this.load360();
+  //        _this.loadBaidu();
+//          _this.load360();
         },5000)
       },
       methods:{
