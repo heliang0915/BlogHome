@@ -9,6 +9,10 @@ Vue.mixin({
           hid: 'description',
           name: 'description',
           content
+        },{
+          hid: 'keywords',
+          name: 'keywords',
+          content: '前端日记,H5,JavaScript,Css3,Vue,React,VueRouter,Html'
         }].concat(payload)
       }
     }

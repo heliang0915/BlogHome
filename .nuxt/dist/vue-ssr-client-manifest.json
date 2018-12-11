@@ -9,16 +9,16 @@
     "layouts/errorLayout.5fb192ce10d2fefed42c.js",
     "pages/detail/_id.65bd327a4c69eb04d0c5.js",
     "vendor.24495927fbee947affe8.js",
-    "app.4ffbb7cdedb06e8f193a.js",
-    "manifest.ec213ece32ccab28a9c1.js",
+    "app.2c6991eb38a6f06ac7b7.js",
+    "manifest.b047917c3c95a3443b34.js",
     "LICENSES",
     "index.spa.html",
     "index.ssr.html"
   ],
   "initial": [
-    "manifest.ec213ece32ccab28a9c1.js",
+    "manifest.b047917c3c95a3443b34.js",
     "vendor.24495927fbee947affe8.js",
-    "app.4ffbb7cdedb06e8f193a.js"
+    "app.2c6991eb38a6f06ac7b7.js"
   ],
   "async": [
     "layouts/default.791b5760f02201ee09b2.js",
