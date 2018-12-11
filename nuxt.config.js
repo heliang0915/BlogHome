@@ -21,6 +21,11 @@ module.exports = {
         content: 'width=device-width, initial-scale=1'
       },
       {
+        hid: 'keywords',
+        name: 'keywords',
+        content: '前端日记,H5,JavaScript,Css3,Vue,React,VueRouter,Html'
+      },
+      {
         hid: 'description',
         name: 'description',
         content: '首页'
